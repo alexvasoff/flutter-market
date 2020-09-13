@@ -43,17 +43,21 @@ class _RandomWordsState extends State<RandomWords> {
         if (index >= _suggestion.length) {
           _suggestion.addAll(generateWordPairs().take(10));
         }
-        return _buildRow(_suggestion[index]);
+        return _buildRow(_suggestion[index], index);
       },
     );
   }
 
-  Widget _buildRow(WordPair pair) {
+  Widget _buildRow(WordPair pair, int number) {
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
+      trailing: Icon(Icons.favorite_border),  // иконка в конце  списка
+      subtitle: Text("Нравится?") ,
+      leading: Text(number.toString()),
+
     );
   }
 
