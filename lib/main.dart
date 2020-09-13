@@ -24,6 +24,7 @@ class RandomWords extends StatefulWidget {
 class _RandomWordsState extends State<RandomWords> {
   final _suggestion = <WordPair>[]; // массив для хранения слов
   final _biggerFont = TextStyle(fontSize: 18.0);
+  final _saved = Set<WordPair>();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,8 @@ class _RandomWordsState extends State<RandomWords> {
 
         final index = i ~/ 2;
         if (index >= _suggestion.length) {
-          _suggestion.addAll(generateWordPairs().take(10)); // добавить 10 сгенеренных пар в лист
+          _suggestion.addAll(generateWordPairs()
+              .take(10)); // добавить 10 сгенеренных пар в лист
         }
         return _buildRow(_suggestion[index], index);
       },
@@ -57,18 +59,31 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair, int number) {
+    final bool alreadySaved = _saved.contains(pair);
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
-      trailing: Icon(Icons.favorite_border), // иконка в конце  списка
-      subtitle: Text("Нравится?"),
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
+      ), // иконка в конце списка
+      subtitle: Text("subText"),
       leading: Text(
         number.toString(),
         style: TextStyle(fontSize: 21),
       ),
+      onTap: () {
+        setState(() {  //запускает билд объекта
+          if (alreadySaved) {
+            _saved.remove(pair);
+          }
+          else {
+            _saved.add(pair);
+          }
+        });
+      },
     );
   }
 }
-
