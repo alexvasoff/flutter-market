@@ -8,17 +8,8 @@ class MyApp extends StatelessWidget { // без сохранения состо�
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(  // предоставляет панель, заголовок, свойство body
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: RandomWords(),
-          ),
-        ),
-      ),
+      title: 'Startup Name Generator',
+      home: RandomWords(),
     );
   }
 }
@@ -30,10 +21,41 @@ class RandomWords extends StatefulWidget {
 }
 
 class _RandomWordsState extends State<RandomWords> {
+  final _suggestion = <WordPair>[];  // массив для хранения слов
+  final _biggerFont = TextStyle(fontSize: 18.0);
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random();
-    return Text(wordPair.asPascalCase);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Генератор Названий"),
+      ),
+      body: _buildSuggestions(),
+    );
   }
+
+  Widget _buildSuggestions() {
+    return ListView.builder(
+      padding: EdgeInsets.all(16.0),
+      itemBuilder: (context, i) {
+        if (i.isOdd) return Divider();  // если нечет - создание разделителя
+
+        final index = i ~/ 2;
+        if (index >= _suggestion.length) {
+          _suggestion.addAll(generateWordPairs().take(10));
+        }
+        return _buildRow(_suggestion[index]);
+      },
+    );
+  }
+
+  Widget _buildRow(WordPair pair) {
+    return ListTile(
+      title: Text(
+        pair.asPascalCase,
+        style: _biggerFont,
+      ),
+    );
+  }
+
 }
 
