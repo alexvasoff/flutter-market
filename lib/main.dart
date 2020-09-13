@@ -59,7 +59,12 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair, int number) {
+    String subText;
     final bool alreadySaved = _saved.contains(pair);
+    if (alreadySaved) {
+      subText = "Хороший выбор!";
+    }
+    else subText = "Нравится?";
     return ListTile(
       title: Text(
         pair.asPascalCase,
@@ -69,13 +74,13 @@ class _RandomWordsState extends State<RandomWords> {
         alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : null,
       ), // иконка в конце списка
-      subtitle: Text("subText"),
+      subtitle: Text(subText),
       leading: Text(
         number.toString(),
         style: TextStyle(fontSize: 21),
       ),
       onTap: () {
-        setState(() {  //запускает билд объекта
+        setState(() {  // Сообщите, что внутреннее состояние объекта изменилось
           if (alreadySaved) {
             _saved.remove(pair);
           }
