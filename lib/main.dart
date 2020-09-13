@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-void main() => runApp(MyApp());  // вызов класса MyApp на старте
+void main() => runApp(MyApp()); // вызов класса MyApp на старте
 
 //ma
-class MyApp extends StatelessWidget { // без сохранения состояния
+class MyApp extends StatelessWidget {
+  // без сохранения состояния
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,13 +22,19 @@ class RandomWords extends StatefulWidget {
 }
 
 class _RandomWordsState extends State<RandomWords> {
-  final _suggestion = <WordPair>[];  // массив для хранения слов
+  final _suggestion = <WordPair>[]; // массив для хранения слов
   final _biggerFont = TextStyle(fontSize: 18.0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //панель приложения по умолчанию
       appBar: AppBar(
-        title: Text("Генератор Названий"),
+        title: Text(
+          "Генератор Названий",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
       ),
       body: _buildSuggestions(),
     );
@@ -37,11 +44,12 @@ class _RandomWordsState extends State<RandomWords> {
     return ListView.builder(
       padding: EdgeInsets.all(16.0),
       itemBuilder: (context, i) {
-        if (i.isOdd) return Divider();  // если нечет - создание разделителя
+        if (i.isOdd)
+          return Divider(height: 16.0); // если нечет - создание разделителя
 
         final index = i ~/ 2;
         if (index >= _suggestion.length) {
-          _suggestion.addAll(generateWordPairs().take(10));
+          _suggestion.addAll(generateWordPairs().take(10)); // добавить 10 сгенеренных пар в лист
         }
         return _buildRow(_suggestion[index], index);
       },
@@ -54,12 +62,13 @@ class _RandomWordsState extends State<RandomWords> {
         pair.asPascalCase,
         style: _biggerFont,
       ),
-      trailing: Icon(Icons.favorite_border),  // иконка в конце  списка
-      subtitle: Text("Нравится?") ,
-      leading: Text(number.toString()),
-
+      trailing: Icon(Icons.favorite_border), // иконка в конце  списка
+      subtitle: Text("Нравится?"),
+      leading: Text(
+        number.toString(),
+        style: TextStyle(fontSize: 21),
+      ),
     );
   }
-
 }
 
