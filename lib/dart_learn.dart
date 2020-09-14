@@ -1,5 +1,5 @@
 void main() {
-  collections();
+  typeCheck();
 }
 
 void baseTypes() {
@@ -114,4 +114,51 @@ void collections() {
   List<int> generator = [for (int i = 0; i<10; i++) i];
   print(strList);
   print(generator);
+
+  print("\nМножества");
+  // Set - множества (уникальные значения)
+
+  var names = <String>{}; // 
+  Set<String> names1 = {};
+  // var names3 = {}  - Словарь! 
+  
+  Set<String> pLangs = {"Dart", "C", "Python", "GO"};
+  print(pLangs);
+  pLangs.add("Perl");
+  print("Добавили элемент в сет $pLangs");
+  pLangs.addAll({"C#", "Java", "Dart"});  // Dart не добавится снова
+  print(pLangs);
+
+  print("\nСловари");
+  // Map - Слоаври
+  Map<String,String> mDict = {
+    "key1" : "val1",
+    "key2" : "val2",
+    "key3" : "val3",
+  };
+  print(mDict);
+  mDict["key4"] = "val4";
+  mDict["key10"] = "val10";
+  print(mDict);
+  print("Всего пар: ${mDict.length}");
+}
+
+// Усл. операторы и проверка типов
+void typeCheck()
+{
+  print("Str" is String);
+  print("Str" is! String);
+
+  var b;
+  var value = 10;
+  b ??= value;  // b == null ? b = value : pass
+  print(b);
+
+  String getName(String name)
+  {
+    return name ?? "Guest";  // name == null ? "Guest" : name
+  }
+
+  print(getName("Bob"));
+  print(getName(null));
 }
