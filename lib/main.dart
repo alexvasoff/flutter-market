@@ -63,8 +63,8 @@ class _RandomWordsState extends State<RandomWords> {
     final bool alreadySaved = _saved.contains(pair);
     if (alreadySaved) {
       subText = "Хороший выбор!";
-    }
-    else subText = "Нравится?";
+    } else
+      subText = "Нравится?";
     return ListTile(
       title: Text(
         pair.asPascalCase,
@@ -73,18 +73,19 @@ class _RandomWordsState extends State<RandomWords> {
       trailing: Icon(
         alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : null,
-      ), // иконка в конце списка
+      ),
+      // иконка в конце списка
       subtitle: Text(subText),
       leading: Text(
         number.toString(),
         style: TextStyle(fontSize: 21),
       ),
       onTap: () {
-        setState(() {  // Сообщите, что внутреннее состояние объекта изменилось
+        setState(() {
+          // Сообщите, что внутреннее состояние объекта изменилось
           if (alreadySaved) {
             _saved.remove(pair);
-          }
-          else {
+          } else {
             _saved.add(pair);
           }
         });
