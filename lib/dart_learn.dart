@@ -1,3 +1,5 @@
+import 'dart:html';
+
 void main() {
   typeCheck();
 }
@@ -110,31 +112,31 @@ void collections() {
   print(nav);
 
   List<int> intList = [1, 3, 5, 7, 2, 5];
-  List<String> strList = [for(var i in intList) ">$i"];
-  List<int> generator = [for (int i = 0; i<10; i++) i];
+  List<String> strList = [for (var i in intList) ">$i"];
+  List<int> generator = [for (int i = 0; i < 10; i++) i];
   print(strList);
   print(generator);
 
   print("\nМножества");
   // Set - множества (уникальные значения)
 
-  var names = <String>{}; // 
+  var names = <String>{}; //
   Set<String> names1 = {};
-  // var names3 = {}  - Словарь! 
-  
+  // var names3 = {}  - Словарь!
+
   Set<String> pLangs = {"Dart", "C", "Python", "GO"};
   print(pLangs);
   pLangs.add("Perl");
   print("Добавили элемент в сет $pLangs");
-  pLangs.addAll({"C#", "Java", "Dart"});  // Dart не добавится снова
+  pLangs.addAll({"C#", "Java", "Dart"}); // Dart не добавится снова
   print(pLangs);
 
   print("\nСловари");
   // Map - Слоаври
-  Map<String,String> mDict = {
-    "key1" : "val1",
-    "key2" : "val2",
-    "key3" : "val3",
+  Map<String, String> mDict = {
+    "key1": "val1",
+    "key2": "val2",
+    "key3": "val3",
   };
   print(mDict);
   mDict["key4"] = "val4";
@@ -144,21 +146,36 @@ void collections() {
 }
 
 // Усл. операторы и проверка типов
-void typeCheck()
-{
+void typeCheck() {
   print("Str" is String);
   print("Str" is! String);
 
   var b;
   var value = 10;
-  b ??= value;  // b == null ? b = value : pass
+  b ??= value; // b == null ? b = value : pass
   print(b);
 
-  String getName(String name)
-  {
-    return name ?? "Guest";  // name == null ? "Guest" : name
+  String getName(String name) {
+    return name ?? "Guest"; // name == null ? "Guest" : name
   }
 
   print(getName("Bob"));
   print(getName(null));
+
+  // каскадный оператор
+  querySelector(
+      "#confirm") // Метод возвращает объект (Находит первый дочерний элемент этого документа, который соответствует указанной группе селекторов.)
+    ..text = "Confirm" //
+    ..classes.add(('important'))
+    ..onClick.listen((event) {
+      window.alert(("Confirmed!"));
+    });
+
+  // аналогичная запись
+  var button = querySelector("#confirm");
+  button.text = "Confirm";
+  button.classes.add("important");
+  button.onClick.listen((event) {
+    window.alert("Confirmed!");
+  });
 }
