@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-
+  List<Item> items = [Item("1", "is one", 15,"111"), Item("2", "123", 5, "555")];
+  print(items[0].price);
 }
 
 class Item extends StatelessWidget {
