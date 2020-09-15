@@ -1,7 +1,7 @@
-import 'dart:html';
+//import 'dart:html';
 
 void main() {
-  typeCheck();
+  functions();
 }
 
 void baseTypes() {
@@ -161,7 +161,7 @@ void typeCheck() {
 
   print(getName("Bob"));
   print(getName(null));
-
+/*
   // каскадный оператор
   querySelector(
       "#confirm") // Метод возвращает объект (Находит первый дочерний элемент этого документа, который соответствует указанной группе селекторов.)
@@ -178,4 +178,6 @@ void typeCheck() {
   button.onClick.listen((event) {
     window.alert("Confirmed!");
   });
+
+ */
 }
