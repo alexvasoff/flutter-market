@@ -34,36 +34,35 @@ class ShowCase extends StatelessWidget {
   Widget build(BuildContext context) {
     final int itemsCount = allItems.length;
     return Container(
-      child: ListView.builder(
+      child: ListView(
         padding: EdgeInsets.all(10.0),
-        itemBuilder: (context, index) {
-          if (index.isOdd)
-            return Divider(
-              height: 16.0,
-            );
-          // ignore: missing_return
-          final i = index ~/ 2;
-          if (i < itemsCount)
-            return (ItemBuilder());
-        },
+        children: [for (int i = 0; i < itemsCount; i++) ItemBuilder(i),],
       ),
     );
   }
 }
 
+
 class ItemBuilder extends StatefulWidget {
+  final int index;
+  ItemBuilder(this.index);
+
   @override
-  _ItemBuilderState createState() => _ItemBuilderState();
+  _ItemBuilderState createState() => _ItemBuilderState(index);
 }
 
 class _ItemBuilderState extends State<ItemBuilder> {
+  final int index;
+  final List<Item> allItems = ItemsStorage().items;
   bool isNoticed = false;
+
+  _ItemBuilderState(this.index);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
-        title: Text("ТОВАР"),
+        title: Text('${allItems[index].name}'),
       ),
     );
   }
