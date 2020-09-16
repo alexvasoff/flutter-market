@@ -21,7 +21,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Классное название!"),
       ),
-      // body: Center(child: Container(child: Text("Добрый день!"))),
       body: ShowCase(),
     );
   }
@@ -35,16 +34,18 @@ class ShowCase extends StatelessWidget {
     final int itemsCount = allItems.length;
     return Container(
       child: ListView(
-        padding: EdgeInsets.all(10.0),
-        children: [for (int i = 0; i < itemsCount; i++) ItemBuilder(i),],
+        padding: EdgeInsets.all(10),
+        children: [
+          for (int i = 0; i < itemsCount; i++) ItemBuilder(i),
+        ],
       ),
     );
   }
 }
 
-
 class ItemBuilder extends StatefulWidget {
   final int index;
+
   ItemBuilder(this.index);
 
   @override
@@ -62,7 +63,13 @@ class _ItemBuilderState extends State<ItemBuilder> {
   Widget build(BuildContext context) {
     return Container(
       child: ListTile(
-        title: Text('${allItems[index].name}'),
+        title: Text('${allItems[index].price}'),
+        onTap: () {
+          setState(() {
+            allItems[index].price += 1;
+          });
+
+        },
       ),
     );
   }
