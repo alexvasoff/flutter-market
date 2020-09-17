@@ -18,11 +18,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Классное название!"),
-      ),
-      body: ShowCase(),
-    );
+        appBar: AppBar(
+          title: Text("Классное название!"),
+        ),
+        body: ShowCase());
   }
 }
 
@@ -59,23 +58,6 @@ class _ItemBuilderState extends State<ItemBuilder> {
 
   _ItemBuilderState(this.index);
 
-  Widget basicInformation() {
-    return Container(
-        child: ListTile(
-      title: Text('${allItems[index].name}'),
-      trailing: Icon(Icons.picture_in_picture),
-    ));
-  }
-
-  Widget moreInformation() {
-    return ListTile(
-      title: Text('${allItems[index].name}'),
-      trailing: Icon(Icons.picture_in_picture),
-      subtitle: Text(
-          "${allItems[index].description} по цене ${allItems[index].price}"),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -85,6 +67,27 @@ class _ItemBuilderState extends State<ItemBuilder> {
         });
       },
       child: isNoticed ? moreInformation() : basicInformation(),
+    );
+  }
+
+  Widget basicInformation() {
+    return Container(
+        padding: EdgeInsets.all(10),
+        child: ListTile(
+          title: Text('${allItems[index].name}'),
+          trailing: Icon(Icons.picture_in_picture),
+        ));
+  }
+
+  Widget moreInformation() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: ListTile(
+        title: Text('${allItems[index].name}'),
+        trailing: Icon(Icons.extension),
+        subtitle: Text(
+            "${allItems[index].description} по цене ${allItems[index].price}"),
+      ),
     );
   }
 }
