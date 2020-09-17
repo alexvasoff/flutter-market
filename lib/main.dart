@@ -59,6 +59,18 @@ class _ItemBuilderState extends State<ItemBuilder> {
 
   _ItemBuilderState(this.index);
 
+  Widget basicInformation() {
+    return Container(
+        child: ListTile(
+      title: Text('${allItems[index].name}'),
+      trailing: Icon(Icons.picture_in_picture),
+    ));
+  }
+
+  Widget moreInformation() {
+    return Text("Тут много инфы");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,7 +80,6 @@ class _ItemBuilderState extends State<ItemBuilder> {
           setState(() {
             allItems[index].price += 1;
           });
-
         },
       ),
     );
