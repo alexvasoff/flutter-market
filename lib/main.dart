@@ -68,20 +68,23 @@ class _ItemBuilderState extends State<ItemBuilder> {
   }
 
   Widget moreInformation() {
-    return Text("Тут много инфы");
+    return ListTile(
+      title: Text('${allItems[index].name}'),
+      trailing: Icon(Icons.picture_in_picture),
+      subtitle: Text(
+          "${allItems[index].description} по цене ${allItems[index].price}"),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListTile(
-        title: Text('${allItems[index].price}'),
-        onTap: () {
-          setState(() {
-            allItems[index].price += 1;
-          });
-        },
-      ),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isNoticed = !isNoticed;
+        });
+      },
+      child: isNoticed ? moreInformation() : basicInformation(),
     );
   }
 }
