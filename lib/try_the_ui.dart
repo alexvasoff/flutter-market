@@ -41,3 +41,24 @@ class BiggerColorBox extends StatelessWidget {
     );
   }
 }
+
+class MyContainer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue[100],
+          border: Border.all(),
+          shape: BoxShape.circle,
+        ),
+        // alignment: Alignment.center,
+        // width: 150,
+        // height: 150,
+        margin: EdgeInsets.all(1),
+        padding: EdgeInsets.fromLTRB(100, 4, 2, 6),
+        child: Text("Text in container!"),
+      ),
+    );
+  }
+}

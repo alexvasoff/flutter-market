@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text("Классное название!"),
         ),
-        body: RowColumn());
+        body: MyContainer());
   }
 }
 
