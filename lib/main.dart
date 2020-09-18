@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models.dart';
+import 'package:flutter_learn/try_the_ui.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text("Классное название!"),
         ),
-        body: ShowCase());
+        body: RowColumn());
   }
 }
 
@@ -73,9 +74,12 @@ class _ItemBuilderState extends State<ItemBuilder> {
   Widget basicInformation() {
     return Container(
         padding: EdgeInsets.all(10),
-        child: ListTile(
-          title: Text('${allItems[index].name}'),
-          trailing: Icon(Icons.picture_in_picture),
+        child: Row(
+          children: [
+            Image.network(
+                'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160'),
+            Text("${allItems[index].name}")
+          ],
         ));
   }
 
