@@ -110,8 +110,12 @@ class _ItemBuilderState extends State<ItemBuilder> {
         children: [
           Container(
             margin: EdgeInsets.all(10),
+            width: 360,
+            height: 180,
             child: Image.network(
-                'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160'),
+              'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160',
+              fit: BoxFit.cover,
+            ),
           ),
           Container(
             margin: EdgeInsets.all(10),
