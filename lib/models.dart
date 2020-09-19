@@ -17,13 +17,18 @@ class Item {
 
 class ItemsStorage {
   List<Item> _items = [
-    Item(name: "1", description: "desc", price: 10, img: "img"),
-    Item(name: "2", description: "desc", price: 10, img: "img"),
-    Item(name: "3", description: "desc", price: 10, img: "img"),
-    Item(name: "4", description: "desc", price: 10, img: "img"),
-    Item(name: "5", description: "desc", price: 10, img: "img"),
-    Item(name: "6", description: "desc", price: 10, img: "img"),
-    Item(name: "7", description: "desc", price: 10, img: "img"),
+    Item(name: "Первый товар", description: "desc", price: 10, img: "img"),
+    Item(name: "Второй товар", description: "desc", price: 10, img: "img"),
+    Item(name: "Третий товар", description: "desc", price: 10, img: "img"),
+    Item(name: "Четвертый товар", description: "desc", price: 10, img: "img"),
+    Item(name: "Пятый товар", description: "desc", price: 10, img: "img"),
+    Item(name: "Шестой товар", description: "desc", price: 10, img: "img"),
+    Item(
+        name:
+            "фывыфвыфвфывфывфывыфвыфвфывывыфвфывыфвыфвфывфывыфвфывыфвфывыф товар",
+        description: "desc",
+        price: 10,
+        img: "img"),
   ];
 
   UnmodifiableListView<Item> get items => UnmodifiableListView(_items);

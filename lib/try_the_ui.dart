@@ -62,3 +62,18 @@ class MyContainer extends StatelessWidget {
     );
   }
 }
+
+class ContWithImg extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: Image.network(
+                  'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160')
+              .image,
+        ),
+      ),
+    );
+  }
+}

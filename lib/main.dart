@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models.dart';
-import 'package:flutter_learn/try_the_ui.dart';
+import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
-void main() => runApp(MyApp());
+void main() {
+  debugPaintSizeEnabled = true;
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Title of application!",
-      home: HomePage(),
       theme: ThemeData(primarySwatch: Colors.red),
+      home: HomePage(),
     );
   }
 }
@@ -22,7 +25,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text("Классное название!"),
         ),
-        body: MyContainer());
+        body: ShowCase());
   }
 }
 
@@ -62,23 +65,40 @@ class _ItemBuilderState extends State<ItemBuilder> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      child: isNoticed ? moreInformation() : basicInformation(),
       onTap: () {
         setState(() {
           isNoticed = !isNoticed;
         });
       },
-      child: isNoticed ? moreInformation() : basicInformation(),
     );
   }
 
   Widget basicInformation() {
     return Container(
-        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(border: Border.all()),
+        margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.network(
-                'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160'),
-            Text("${allItems[index].name}")
+            Card(
+              elevation: 20,
+              child: Image.network(
+                'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160',
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Flexible(
+              fit: FlexFit.loose,
+              child: Container(
+                  margin: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    "${allItems[index].name}",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  )),
+            )
           ],
         ));
   }
