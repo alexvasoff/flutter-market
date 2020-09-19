@@ -106,11 +106,35 @@ class _ItemBuilderState extends State<ItemBuilder> {
   Widget moreInformation() {
     return Container(
       padding: EdgeInsets.all(10),
-      child: ListTile(
-        title: Text('${allItems[index].name}'),
-        trailing: Icon(Icons.extension),
-        subtitle: Text(
-            "${allItems[index].description} по цене ${allItems[index].price}"),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(10),
+            child: Image.network(
+                'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160'),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Название: ${allItems[index].name}",
+                    softWrap: true,
+                  ),
+                ),
+                Text("Цена: ${allItems[index].price}"),
+              ],
+            ),
+          ),
+          Container(
+              margin: EdgeInsets.all(10),
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Описание: ${allItems[index].description}",
+                softWrap: true,
+              )),
+        ],
       ),
     );
   }
