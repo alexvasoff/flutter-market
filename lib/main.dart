@@ -82,9 +82,11 @@ class _ItemBuilderState extends State<ItemBuilder> {
         margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
         child: Column(
           children: [
+            // строка [Картинка  название]
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // картинка
                 Container(
                   width: 80,
                   height: 80,
@@ -102,8 +104,8 @@ class _ItemBuilderState extends State<ItemBuilder> {
                         image: Image.asset('${curItem.img}').image),
                   ),
                 ),
-                Flexible(
-                  fit: FlexFit.loose,
+                // название
+                Expanded(
                   child: Container(
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
@@ -111,9 +113,10 @@ class _ItemBuilderState extends State<ItemBuilder> {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       )),
-                )
+                ),
               ],
             ),
+            // разделитель
             Divider(height: 10.0),
           ],
         ));
@@ -125,6 +128,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
       padding: EdgeInsets.all(10),
       child: Column(
         children: [
+          // картинка
           Container(
             margin: EdgeInsets.all(10),
             width: 360,
@@ -134,6 +138,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
               fit: BoxFit.contain,
             ),
           ),
+          // строка [Название    цена]
           Container(
             margin: EdgeInsets.only(top: 20, left: 10),
             child: Row(
@@ -155,6 +160,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
               ],
             ),
           ),
+          // описание
           Container(
               margin: EdgeInsets.all(10),
               alignment: Alignment.bottomLeft,
