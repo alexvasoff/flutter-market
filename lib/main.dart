@@ -76,8 +76,6 @@ class _ItemBuilderState extends State<ItemBuilder> {
 
   Widget basicInformation() {
     return Container(
-        //     decoration: BoxDecoration(
-        // border: Border.all(), borderRadius: BorderRadius.circular(10)),
         margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,18 +91,11 @@ class _ItemBuilderState extends State<ItemBuilder> {
                     blurRadius: 2,
                   )
                 ],
-                //  border: Border.all(),
                 borderRadius: BorderRadius.circular(5),
                 image: DecorationImage(
                     image: Image.asset('images/Expanded.png').image),
               ),
               margin: EdgeInsets.all(5),
-              // child: Image.asset(
-              //   'images/Expanded.png',
-              //   width: 80,
-              //   height: 80,
-              //   fit: BoxFit.contain,
-              // ),
             ),
             Flexible(
               fit: FlexFit.loose,
