@@ -77,35 +77,41 @@ class _ItemBuilderState extends State<ItemBuilder> {
   Widget basicInformation() {
     return Container(
         margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(
           children: [
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey[200],
-                    spreadRadius: 3,
-                    blurRadius: 2,
-                  )
-                ],
-                borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(
-                    image: Image.asset('images/Expanded.png').image),
-              ),
-              margin: EdgeInsets.all(5),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey[200],
+                        spreadRadius: 3,
+                        blurRadius: 2,
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                        image: Image.asset('images/Expanded.png').image),
+                  ),
+                  margin: EdgeInsets.all(5),
+                ),
+                Flexible(
+                  fit: FlexFit.loose,
+                  child: Container(
+                      margin: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        "${allItems[index].name}",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      )),
+                )
+              ],
             ),
-            Flexible(
-              fit: FlexFit.loose,
-              child: Container(
-                  margin: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    "${allItems[index].name}",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
-            )
+            Divider(height: 10.0),
           ],
         ));
   }
@@ -145,6 +151,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                 "Описание: ${allItems[index].description}",
                 softWrap: true,
               )),
+          Divider(height: 10.0),
         ],
       ),
     );
