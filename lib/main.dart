@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter Widget Store"),
+        title: Text("Flutter Widgets Store"),
       ),
       body: ShowCase(),
     );
@@ -45,10 +45,13 @@ class ShowCase extends StatelessWidget {
   }
 }
 
+//построитель отображения элементов
 class ItemBuilder extends StatefulWidget {
   final int index;
+
   ItemBuilder(this.index);
 
+  //вернуть элемент Item по индексу
   Item curItem(index) => ItemsStorage().items[index];
 
   @override
@@ -73,6 +76,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
     );
   }
 
+//отрисовка "превью" товара
   Widget basicInformation() {
     return Container(
         margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
@@ -115,6 +119,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
         ));
   }
 
+// отрисовка подробного описания товара
   Widget moreInformation() {
     return Container(
       padding: EdgeInsets.all(10),
