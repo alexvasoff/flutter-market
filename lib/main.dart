@@ -96,7 +96,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                     ],
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
-                        image: Image.asset('images/Expanded.png').image),
+                        image: Image.asset('${allItems[index].img}').image),
                   ),
                 ),
                 Flexible(
@@ -126,7 +126,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
             width: 360,
             height: 180,
             child: Image.asset(
-              'images/Expanded.png',
+              '${allItems[index].img}',
               fit: BoxFit.contain,
             ),
           ),
