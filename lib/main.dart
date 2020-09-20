@@ -85,6 +85,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                 Container(
                   width: 80,
                   height: 80,
+                  margin: EdgeInsets.symmetric(vertical: 5),
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -97,7 +98,6 @@ class _ItemBuilderState extends State<ItemBuilder> {
                     image: DecorationImage(
                         image: Image.asset('images/Expanded.png').image),
                   ),
-                  margin: EdgeInsets.all(5),
                 ),
                 Flexible(
                   fit: FlexFit.loose,
