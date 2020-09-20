@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Title of application!",
-      theme: ThemeData(primarySwatch: Colors.red),
       home: HomePage(),
     );
   }
@@ -22,10 +21,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Классное название!"),
-        ),
-        body: ShowCase());
+      appBar: AppBar(
+        title: Text("Flutter Widget Store"),
+      ),
+      body: ShowCase(),
+    );
   }
 }
 
@@ -76,19 +76,35 @@ class _ItemBuilderState extends State<ItemBuilder> {
 
   Widget basicInformation() {
     return Container(
-        decoration: BoxDecoration(border: Border.all()),
+        //     decoration: BoxDecoration(
+        // border: Border.all(), borderRadius: BorderRadius.circular(10)),
         margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Card(
-              elevation: 20,
-              child: Image.network(
-                'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160',
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey[200],
+                    spreadRadius: 3,
+                    blurRadius: 2,
+                  )
+                ],
+                //  border: Border.all(),
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(
+                    image: Image.asset('images/Expanded.png').image),
               ),
+              margin: EdgeInsets.all(5),
+              // child: Image.asset(
+              //   'images/Expanded.png',
+              //   width: 80,
+              //   height: 80,
+              //   fit: BoxFit.contain,
+              // ),
             ),
             Flexible(
               fit: FlexFit.loose,
@@ -112,9 +128,9 @@ class _ItemBuilderState extends State<ItemBuilder> {
             margin: EdgeInsets.all(10),
             width: 360,
             height: 180,
-            child: Image.network(
-              'https://im.jigsawplanet.com/?rc=img&pid=22c354cf3317&size=160',
-              fit: BoxFit.cover,
+            child: Image.asset(
+              'images/Expanded.png',
+              fit: BoxFit.contain,
             ),
           ),
           Container(
