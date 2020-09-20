@@ -30,15 +30,14 @@ class HomePage extends StatelessWidget {
 }
 
 class ShowCase extends StatelessWidget {
-  final List<Item> allItems = ItemsStorage().items;
-
   @override
   Widget build(BuildContext context) {
-    final int itemsCount = allItems.length;
+    final int itemsCount = ItemsStorage().items.length;
     return Container(
       child: ListView(
         padding: EdgeInsets.all(10),
         children: [
+          // вызываем отрисовку для каждого элемента в ItemsStorage
           for (int i = 0; i < itemsCount; i++) ItemBuilder(i),
         ],
       ),
@@ -48,19 +47,19 @@ class ShowCase extends StatelessWidget {
 
 class ItemBuilder extends StatefulWidget {
   final int index;
-
   ItemBuilder(this.index);
 
+  Item curItem(index) => ItemsStorage().items[index];
+
   @override
-  _ItemBuilderState createState() => _ItemBuilderState(index);
+  _ItemBuilderState createState() => _ItemBuilderState(curItem(index));
 }
 
 class _ItemBuilderState extends State<ItemBuilder> {
-  final int index;
-  final List<Item> allItems = ItemsStorage().items;
+  final Item curItem;
   bool isNoticed = false;
 
-  _ItemBuilderState(this.index);
+  _ItemBuilderState(this.curItem);
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +95,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                     ],
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
-                        image: Image.asset('${allItems[index].img}').image),
+                        image: Image.asset('${curItem.img}').image),
                   ),
                 ),
                 Flexible(
@@ -104,7 +103,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                   child: Container(
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
-                        "${allItems[index].name}",
+                        "${curItem.name}",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       )),
@@ -126,7 +125,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
             width: 360,
             height: 180,
             child: Image.asset(
-              '${allItems[index].img}',
+              '${curItem.img}',
               fit: BoxFit.contain,
             ),
           ),
@@ -136,7 +135,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
               children: [
                 Expanded(
                   child: Text(
-                    "Название: ${allItems[index].name}",
+                    "Название: ${curItem.name}",
                     style: TextStyle(fontSize: 18),
                     softWrap: true,
                   ),
@@ -144,7 +143,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                 Container(
                   margin: EdgeInsets.only(right: 50),
                   child: Text(
-                    "Цена: ${allItems[index].price}",
+                    "Цена: ${curItem.price}",
                     style: TextStyle(fontSize: 18),
                   ),
                 )
@@ -155,7 +154,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
               margin: EdgeInsets.all(10),
               alignment: Alignment.bottomLeft,
               child: Text(
-                "Описание:\n${allItems[index].description}",
+                "Описание:\n${curItem.description}",
                 style: TextStyle(fontSize: 16),
                 softWrap: true,
               )),
