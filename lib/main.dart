@@ -3,7 +3,7 @@ import 'package:flutter_learn/models.dart';
 import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
 void main() {
-  debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = false;
   runApp(MyApp());
 }
 
@@ -96,7 +96,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                     ],
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
-                        image: Image.asset('images/Expanded.png').image),
+                        image: Image.asset('${allItems[index].img}').image),
                   ),
                 ),
                 Flexible(
@@ -126,21 +126,28 @@ class _ItemBuilderState extends State<ItemBuilder> {
             width: 360,
             height: 180,
             child: Image.asset(
-              'images/Expanded.png',
+              '${allItems[index].img}',
               fit: BoxFit.contain,
             ),
           ),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.only(top: 20, left: 10),
             child: Row(
               children: [
                 Expanded(
                   child: Text(
                     "Название: ${allItems[index].name}",
+                    style: TextStyle(fontSize: 18),
                     softWrap: true,
                   ),
                 ),
-                Text("Цена: ${allItems[index].price}"),
+                Container(
+                  margin: EdgeInsets.only(right: 50),
+                  child: Text(
+                    "Цена: ${allItems[index].price}",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                )
               ],
             ),
           ),
@@ -148,7 +155,8 @@ class _ItemBuilderState extends State<ItemBuilder> {
               margin: EdgeInsets.all(10),
               alignment: Alignment.bottomLeft,
               child: Text(
-                "Описание: ${allItems[index].description}",
+                "Описание:\n${allItems[index].description}",
+                style: TextStyle(fontSize: 16),
                 softWrap: true,
               )),
           Divider(height: 10.0),
