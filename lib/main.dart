@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
 class ShowCase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final int itemsCount = ItemsStorage().items.length;
+    final int itemsCount = ItemsStorage.getInstance().items.length;
     return Container(
       child: ListView(
         padding: EdgeInsets.all(10),
@@ -52,7 +52,7 @@ class ItemBuilder extends StatefulWidget {
   ItemBuilder(this.index);
 
   //вернуть элемент Item по индексу
-  Item curItem(index) => ItemsStorage().items[index];
+  Item curItem(index) => ItemsStorage.getInstance().items[index];
 
   @override
   _ItemBuilderState createState() => _ItemBuilderState(curItem(index));

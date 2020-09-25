@@ -1,5 +1,4 @@
 import 'dart:collection';
-
 import 'package:flutter/foundation.dart';
 
 class Item {
@@ -16,6 +15,11 @@ class Item {
 }
 
 class ItemsStorage {
+  static ItemsStorage _itemStorage = ItemsStorage._internal();
+  //factory ItemsStorage() => _itemStorage;
+  ItemsStorage._internal();
+  static ItemsStorage getInstance() => _itemStorage;
+
   List<Item> _items = [
     Item(
         name: "Container",
