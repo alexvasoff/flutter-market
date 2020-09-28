@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 main() {
-  print(ItemsStorage.getIntance().items);
+  print(ItemsStorage.getInstance().items.toString());
 }
 
 // пример кодирования в JSON
@@ -18,7 +18,7 @@ class Item {
 class ItemsStorage {
   ItemsStorage._internal();
   static ItemsStorage _itemsStotage = ItemsStorage._internal();
-  static ItemsStorage getIntance() => _itemsStotage;
+  static ItemsStorage getInstance() => _itemsStotage;
 
   static Item fromJsonMap(Map<String, dynamic> json) {
     String name = json["name"];
@@ -31,6 +31,7 @@ class ItemsStorage {
   }
 
   static List<Item> fromJsonArray(String jsonString) {
+    print(jsonString);
     Map<String, dynamic> decodeMap = jsonDecode(jsonString);
     List<dynamic> dynamicList = decodeMap["Items"];
     List<Item> items = new List<Item>();
@@ -41,6 +42,8 @@ class ItemsStorage {
     return items;
   }
 
-  List<Item> get items =>
-      ItemsStorage.fromJsonArray(File("assets/ItemsData").readAsStringSync());
+  static List<Item> _allItems = ItemsStorage.fromJsonArray(
+      '{"Items": [{"name": "Container","description": "Удобный виджет, сочетающий в себе стандартные виджеты рисования, позиционирования и изменения размера.","price": 10,"img": "images/Container.png"},{"name": "ListView","description": "Прокручиваемый список виджетов, расположенных линейно.","price": 20,"img": "images/ListView.png"}]}');
+//  List<Item> get items => ItemsStorage.fromJsonArray(File("assets/ItemsData").readAsStringSync());
+  List<Item> get items => _allItems;
 }
