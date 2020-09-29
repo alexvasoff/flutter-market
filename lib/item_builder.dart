@@ -2,41 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/second_route.dart';
 import 'models.dart';
 
-class ItemBuilder extends StatefulWidget {
+class ItemBuilder extends StatelessWidget {
   final int index;
-
   ItemBuilder(this.index);
 
   //вернуть элемент Item по индексу
-  Item curItem(index) => ItemsStorage.getInstance().items[index];
-
-  @override
-  _ItemBuilderState createState() => _ItemBuilderState(curItem(index));
-}
-
-class _ItemBuilderState extends State<ItemBuilder> {
-  final Item curItem;
-
-  _ItemBuilderState(this.curItem);
-
+  Item curItem() => ItemsStorage.getInstance().items[index];
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: basicInformation(),
       onTap: () {
-        secondRoute();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SecondRoute(
+              curItem: curItem(),
+              name: curItem().name,
+            ),
+          ),
+        );
       },
     );
-  }
-
-  void secondRoute() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SecondRoute(
-                  curItem: curItem,
-                  name: curItem.name,
-                )));
   }
 
   Widget basicInformation() {
@@ -63,7 +50,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                     ],
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
-                        image: Image.asset('${curItem.img}').image),
+                        image: Image.asset('${curItem().img}').image),
                   ),
                 ),
                 // название
@@ -71,7 +58,7 @@ class _ItemBuilderState extends State<ItemBuilder> {
                   child: Container(
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
-                        "${curItem.name}",
+                        "${curItem().name}",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       )),
