@@ -1,45 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/second_route.dart';
+
 import 'models.dart';
 
-class ItemBuilder extends StatefulWidget {
-  final int index;
-
-  ItemBuilder(this.index);
-
-  //вернуть элемент Item по индексу
-  Item curItem(index) => ItemsStorage.getInstance().items[index];
-
-  @override
-  _ItemBuilderState createState() => _ItemBuilderState(curItem(index));
-}
-
-class _ItemBuilderState extends State<ItemBuilder> {
+class FitsrRoute extends StatelessWidget {
   final Item curItem;
 
-  _ItemBuilderState(this.curItem);
+  const FitsrRoute({Key key, this.curItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: basicInformation(),
-      onTap: () {
-        secondRoute();
-      },
-    );
-  }
-
-  void secondRoute() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => SecondRoute(
-                  curItem: curItem,
-                  name: curItem.name,
-                )));
-  }
-
-  Widget basicInformation() {
     return Container(
         margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
         child: Column(
