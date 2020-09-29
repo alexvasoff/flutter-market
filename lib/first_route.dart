@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'models.dart';
 
-class FitsrRoute extends StatelessWidget {
+class FirstRoute extends StatelessWidget {
   final Item curItem;
 
-  const FitsrRoute({Key key, this.curItem}) : super(key: key);
+  const FirstRoute({Key key, this.curItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
