@@ -9,12 +9,12 @@ class SecondRoute extends StatelessWidget {
   const SecondRoute({Key key, this.curItem, this.name}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Widget: $name'),
-        ),
-        body: Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Widget: $name'),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
             children: [
