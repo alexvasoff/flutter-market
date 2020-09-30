@@ -21,7 +21,7 @@ class ItemBuilder extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => SecondRoute(
               curItem: curItem(),
-              name: curItem().name,
+              title: curItem().name,
             ),
           ),
         );
