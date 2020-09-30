@@ -59,7 +59,6 @@ class SecondRoute extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                     softWrap: true,
                   )),
-              Divider(height: 10.0),
             ],
           ),
         ),

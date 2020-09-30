@@ -10,7 +10,7 @@ class FirstRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
+        margin: EdgeInsets.fromLTRB(0, 10, 25, 0),
         child: Column(
           children: [
             // строка [Картинка  название]
@@ -45,6 +45,18 @@ class FirstRoute extends StatelessWidget {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       )),
                 ),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      "${curItem.price}",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade700),
+                    ),
+                  ),
+                )
               ],
             ),
             // разделитель
