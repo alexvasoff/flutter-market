@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'test.dart';
+import 'models.dart';
 
 class SecondRoute extends StatelessWidget {
   final Item curItem;

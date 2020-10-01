@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -32,6 +30,7 @@ class ItemsStorage {
   static List<Item> items;
   static Future<void> fromJsonArray() async {
     String json = await rootBundle.loadString('assets/ItemData.json');
+    print(json);
     Map<String, dynamic> decodeMap = jsonDecode(json);
     List<dynamic> dynamicList = decodeMap["Items"];
     dynamicList.forEach((element) {
@@ -40,8 +39,5 @@ class ItemsStorage {
     });
   }
 
-  Future<String> getJson() async {
-    final String file = await rootBundle.loadString('assets/ItemData.json');
-    return file;
-  }
+  List<Item> get allItems => items;
 }
