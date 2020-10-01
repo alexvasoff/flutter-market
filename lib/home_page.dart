@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'item_builder.dart';
 import 'models.dart';
 
-// !реализация класса ShowCase в body...
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
