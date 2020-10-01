@@ -21,31 +21,8 @@ class SecondRoute extends StatelessWidget {
               imageSection(),
               titleSection(),
               descriptionSection(),
-              SizedBox(
-                height: 12,
-              ),
-              FlatButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                padding: EdgeInsets.all(12.0),
-                child: SizedBox(
-                  width: 240,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.reply),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Text(
-                        "Вернуться назад",
-                        style: TextStyle(fontSize: 16),
-                      )
-                    ],
-                  ),
-                ),
-                onPressed: () => Navigator.pop(context),
-              )
+              SizedBox(height: 12),
+              homeButton(context),
             ],
           ),
         ),
@@ -100,6 +77,31 @@ class SecondRoute extends StatelessWidget {
         ),
         softWrap: true,
       ),
+    );
+  }
+
+  Widget homeButton(context) {
+    return FlatButton(
+      color: Colors.blue,
+      textColor: Colors.white,
+      padding: EdgeInsets.all(12.0),
+      child: SizedBox(
+        width: 240,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.reply),
+            SizedBox(
+              width: 18,
+            ),
+            Text(
+              "Вернуться назад",
+              style: TextStyle(fontSize: 16),
+            )
+          ],
+        ),
+      ),
+      onPressed: () => Navigator.pop(context),
     );
   }
 }
