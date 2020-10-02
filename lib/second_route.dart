@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'test.dart';
+import 'models.dart';
 
 class SecondRoute extends StatelessWidget {
   final Item curItem;
   final String title;
 
   const SecondRoute({Key key, this.curItem, this.title}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
