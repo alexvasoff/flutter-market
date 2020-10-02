@@ -14,9 +14,9 @@ class ItemsStorage {
 
   ItemsStorage._internal();
 
-  static ItemsStorage _itemsStotage = ItemsStorage._internal();
+  static ItemsStorage _itemsStorage = ItemsStorage._internal();
 
-  static ItemsStorage getInstance() => _itemsStotage;
+  static ItemsStorage getInstance() => _itemsStorage;
 
   List<Item> get items => _allItems;
 
