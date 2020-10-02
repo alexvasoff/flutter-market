@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:async' show Future;
-import 'package:flutter/services.dart' show rootBundle;
+
+itemsFromJsonArray(String json) => ItemsStorage.fromJsonArray(json);
 
 // пример кодирования в JSON
 class Item {
@@ -27,17 +27,18 @@ class ItemsStorage {
     return i;
   }
 
-  static List<Item> items;
-  static Future<void> fromJsonArray() async {
-    String json = await rootBundle.loadString('assets/ItemData.json');
-    print(json);
-    Map<String, dynamic> decodeMap = jsonDecode(json);
+  static List<Item> allItems;
+  static List<Item> fromJsonArray(String jsonString) {
+    print(jsonString);
+    Map<String, dynamic> decodeMap = jsonDecode(jsonString);
     List<dynamic> dynamicList = decodeMap["Items"];
+    List<Item> items = new List<Item>();
     dynamicList.forEach((element) {
       Item i = ItemsStorage.fromJsonMap(element);
       items.add(i);
     });
+    return items;
   }
 
-  List<Item> get allItems => items;
+  List<Item> get items => allItems;
 }
