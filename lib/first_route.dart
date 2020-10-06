@@ -64,12 +64,19 @@ class FirstRoute extends StatelessWidget {
                       onPressed: () {
                         //TODO: Вынести реализацию в отдельный метод
                         if (Cart.getInstance().getAllItems.contains(curItem)) {
-                          print("Уже в корзине!");
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text('Товар уже добавлен в корзину!'),
+                            backgroundColor: Colors.blue,
+                            duration: Duration(seconds: 1),
+                          ));
                           return;
                         }
                         Cart.getInstance().addItemToMap(curItem);
-                        print('Добавлен!');
-                        print(Cart.getInstance().getAllItems.length);
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Товар добавлен в корзину!'),
+                          backgroundColor: Colors.blue,
+                          duration: Duration(seconds: 1),
+                        ));
                       }),
                 ),
               ],

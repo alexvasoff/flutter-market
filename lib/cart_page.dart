@@ -18,7 +18,6 @@ class _CartPageState extends State<CartPage> {
         body: ListView.builder(
           itemCount: Cart.getInstance().getAllItems.length + 1,
           itemBuilder: (context, index) {
-            //TODO: отрисовать карточку товара в корзине
             if (index < Cart.getInstance().getAllItems.length) {
               Item curItem = Cart.getInstance().getAllItems[index];
               return Padding(
