@@ -1,7 +1,8 @@
+import 'first_route.dart';
+import 'models/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/second_route.dart';
-import 'first_route.dart';
-import 'models.dart';
+import 'package:flutter_learn/storage/item_storage.dart';
 
 class ItemBuilder extends StatelessWidget {
   final int index;

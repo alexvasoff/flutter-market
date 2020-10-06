@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'models.dart';
-import 'order.dart';
+import 'models/item_model.dart';
+import 'storage/cart_storage.dart';
 
 class FirstRoute extends StatelessWidget {
   final Item curItem;
@@ -62,13 +62,17 @@ class FirstRoute extends StatelessWidget {
                       color: Colors.cyan,
                     ),
                     onPressed: () {
-                      if (itemsInCart.contains(curItem)) {
+                      //TODO: Вынести реализацию в отдельный метод
+                      if (Cart.itemsInCart.containsKey(curItem)) {
                         print("Уже в корзине!");
                         return;
                       }
-                      itemsInCart.add(curItem);
+                      Cart.itemsInCart.addAll({curItem: 1});
                       print('Добавлен!');
-                      print(itemsInCart.length);
+                      print(Cart.itemsInCart.length);
+                      Cart.itemsInCart.forEach((key, value) {
+                        print(key.name);
+                      });
                     },
                   ),
                 )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'models.dart';
+import 'models/item_model.dart';
 
 class SecondRoute extends StatelessWidget {
   final Item curItem;
@@ -24,6 +24,7 @@ class SecondRoute extends StatelessWidget {
               descriptionSection(),
               SizedBox(height: 12),
               homeButton(context),
+              //TODO: добавить кнопку "В корзину"
             ],
           ),
         ),

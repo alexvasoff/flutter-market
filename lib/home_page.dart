@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/cart_page.dart';
+import 'package:flutter_learn/storage/item_storage.dart';
 import 'item_builder.dart';
-import 'models.dart';
+import 'models/item_model.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -16,8 +17,8 @@ class HomePage extends StatelessWidget {
               icon: Icon(Icons.shopping_basket),
               tooltip: "Перейти в корзину",
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Cart()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CartPage()));
               },
             ),
           )

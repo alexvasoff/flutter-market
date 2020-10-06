@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/order.dart';
 
-class Cart extends StatelessWidget {
+import 'storage/cart_storage.dart';
+
+class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,9 +10,10 @@ class Cart extends StatelessWidget {
           title: Text('KORZINA'),
         ),
         body: ListView.builder(
-          itemCount: itemsInCart.length,
+          itemCount: Cart.itemsInCart.length,
           itemBuilder: (context, index) {
-            return Text(itemsInCart[index].name);
+            //TODO: отрисовать карточку товара в корзине
+            return Text(Cart.itemsInCart.keys.toList()[index].name);
           },
         ));
   }
