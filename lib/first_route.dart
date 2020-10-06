@@ -9,7 +9,6 @@ class FirstRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool inCart = false;
     return Container(
         margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
         child: Column(
@@ -63,12 +62,11 @@ class FirstRoute extends StatelessWidget {
                       color: Colors.cyan,
                     ),
                     onPressed: () {
-                      if (inCart) {
+                      if (itemsInCart.contains(curItem)) {
                         print("Уже в корзине!");
                         return;
                       }
                       itemsInCart.add(curItem);
-                      inCart = true;
                       print('Добавлен!');
                       print(itemsInCart.length);
                     },
