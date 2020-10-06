@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'models.dart';
+import 'order.dart';
 
 class FirstRoute extends StatelessWidget {
   final Item curItem;
-
   const FirstRoute({Key key, this.curItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool inCart = false;
     return Container(
-        margin: EdgeInsets.fromLTRB(0, 10, 25, 0),
+        margin: EdgeInsets.fromLTRB(0, 10, 5, 0),
         child: Column(
           children: [
             // строка [Картинка  название]
@@ -45,16 +46,32 @@ class FirstRoute extends StatelessWidget {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       )),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      "${curItem.price}",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey.shade700),
+                Container(
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    "${curItem.price}",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey.shade700),
+                  ),
+                ),
+                Container(
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.add_shopping_cart,
+                      color: Colors.cyan,
                     ),
+                    onPressed: () {
+                      if (inCart) {
+                        print("Уже в корзине!");
+                        return;
+                      }
+                      itemsInCart.add(curItem);
+                      inCart = true;
+                      print('Добавлен!');
+                      print(itemsInCart.length);
+                    },
                   ),
                 )
               ],

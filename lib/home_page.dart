@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/cart.dart';
+import 'package:flutter_learn/cart_page.dart';
 import 'item_builder.dart';
 import 'models.dart';
 
@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 15),
             child: IconButton(
               icon: Icon(Icons.shopping_basket),
+              tooltip: "Перейти в корзину",
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Cart()));
