@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'models/item_model.dart';
 import 'storage/cart_storage.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
+  @override
+  _CartPageState createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +57,9 @@ class CartPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              (curItem.price * 2).toString(),
+                              (curItem.price *
+                                      Cart.getInstance().getMap[curItem])
+                                  .toString(),
                               style: TextStyle(fontSize: 18),
                             )
                           ],
@@ -63,12 +70,21 @@ class CartPage extends StatelessWidget {
                         child: Row(
                           children: [
                             IconButton(
-                              icon: Icon(Icons.remove),
-                            ),
-                            Text('10'),
+                                icon: Icon(Icons.remove),
+                                onPressed: () {
+                                  setState(() {
+                                    if (Cart.getInstance().getMap[curItem] > 1)
+                                      Cart.getInstance().getMap[curItem]--;
+                                  });
+                                }),
+                            Text(Cart.getInstance().getMap[curItem].toString()),
                             IconButton(
-                              icon: Icon(Icons.add),
-                            )
+                                icon: Icon(Icons.add),
+                                onPressed: () {
+                                  setState(() {
+                                    Cart.getInstance().getMap[curItem]++;
+                                  });
+                                }),
                           ],
                         ),
                       )
