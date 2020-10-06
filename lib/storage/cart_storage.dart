@@ -8,5 +8,8 @@ class Cart {
 
   static Cart getInstance() => _itemsStorage;
 
-  static Map<Item, int> itemsInCart = new Map<Item, int>();
+  static Map<Item, int> _itemsInCart = new Map<Item, int>();
+
+  List<Item> get getAllItems => _itemsInCart.keys.toList();
+  void addItemToMap(Item item) => _itemsInCart.addAll({item: 1});
 }

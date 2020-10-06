@@ -10,10 +10,10 @@ class CartPage extends StatelessWidget {
           title: Text('KORZINA'),
         ),
         body: ListView.builder(
-          itemCount: Cart.itemsInCart.length,
+          itemCount: Cart.getInstance().getAllItems.length,
           itemBuilder: (context, index) {
             //TODO: отрисовать карточку товара в корзине
-            return Text(Cart.itemsInCart.keys.toList()[index].name);
+            return Text(Cart.getInstance().getAllItems[index].name);
           },
         ));
   }

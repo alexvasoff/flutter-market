@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/cart_page.dart';
 import 'package:flutter_learn/storage/item_storage.dart';
 import 'item_builder.dart';
-import 'models/item_model.dart';
 
 class HomePage extends StatelessWidget {
   @override

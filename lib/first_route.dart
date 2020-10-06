@@ -57,25 +57,21 @@ class FirstRoute extends StatelessWidget {
                 ),
                 Container(
                   child: IconButton(
-                    icon: Icon(
-                      Icons.add_shopping_cart,
-                      color: Colors.cyan,
-                    ),
-                    onPressed: () {
-                      //TODO: Вынести реализацию в отдельный метод
-                      if (Cart.itemsInCart.containsKey(curItem)) {
-                        print("Уже в корзине!");
-                        return;
-                      }
-                      Cart.itemsInCart.addAll({curItem: 1});
-                      print('Добавлен!');
-                      print(Cart.itemsInCart.length);
-                      Cart.itemsInCart.forEach((key, value) {
-                        print(key.name);
-                      });
-                    },
-                  ),
-                )
+                      icon: Icon(
+                        Icons.add_shopping_cart,
+                        color: Colors.cyan,
+                      ),
+                      onPressed: () {
+                        //TODO: Вынести реализацию в отдельный метод
+                        if (Cart.getInstance().getAllItems.contains(curItem)) {
+                          print("Уже в корзине!");
+                          return;
+                        }
+                        Cart.getInstance().addItemToMap(curItem);
+                        print('Добавлен!');
+                        print(Cart.getInstance().getAllItems.length);
+                      }),
+                ),
               ],
             ),
             // разделитель

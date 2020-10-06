@@ -14,6 +14,7 @@ class ItemBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: Обработать нажатия
     return GestureDetector(
       child: FirstRoute(
         curItem: ItemsStorage.getInstance().items[index],
