@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/item_model.dart';
+import 'package:flutter_learn/storage/cart_storage.dart';
 
 class ItemDetail extends StatelessWidget {
   final Item curItem;
@@ -20,6 +21,7 @@ class ItemDetail extends StatelessWidget {
             children: [
               imageSection(),
               titleSection(),
+              addToCart(),
               descriptionSection(),
               SizedBox(height: 12),
               homeButton(context),
@@ -67,9 +69,41 @@ class ItemDetail extends StatelessWidget {
     );
   }
 
+  Widget addToCart() {
+    var _enable;
+    if (!Cart.getInstance().getMap.containsKey(curItem)) {
+      _enable = () => Cart.getInstance().addItemToMap(curItem);
+    }
+    return Container(
+      margin: EdgeInsets.only(top: 16),
+      child: FlatButton(
+        padding: EdgeInsets.all(10),
+        color: Colors.blue,
+        disabledColor: Colors.grey,
+        onPressed: _enable,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Добавить в корзину',
+              style: TextStyle(fontSize: 18, color: Colors.white),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Icon(
+              Icons.add_shopping_cart,
+              color: Colors.white,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget descriptionSection() {
     return Container(
-      margin: EdgeInsets.only(top: 30, left: 10),
+      margin: EdgeInsets.only(top: 10, left: 10),
       alignment: Alignment.bottomLeft,
       child: Text(
         "${curItem.description}",

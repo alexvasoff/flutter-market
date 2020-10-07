@@ -62,6 +62,7 @@ class _CartPageState extends State<CartPage> {
                         alignment: Alignment.topRight,
                         icon: Icon(
                           Icons.close,
+                          color: Colors.blueGrey,
                         ),
                         onPressed: () {
                           setState(() {
