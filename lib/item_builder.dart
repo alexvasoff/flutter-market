@@ -16,10 +16,10 @@ class ItemBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: Обработать нажатия
-    return InkWell(
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      // или InkWell
       child: Container(
-        //  color: Colors.white.withAlpha(0), // использовал для GestureDetector
         child: ItemCard(
           curItem: ItemsStorage.getInstance().items[index],
         ),

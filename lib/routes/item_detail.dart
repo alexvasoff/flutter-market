@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/item_model.dart';
 import 'package:flutter_learn/storage/cart_storage.dart';
 
-class ItemDetail extends StatelessWidget {
+class ItemDetail extends StatefulWidget {
   final Item curItem;
   final String title;
 
   const ItemDetail({Key key, this.curItem, this.title}) : super(key: key);
+
+  @override
+  _ItemDetailState createState() => _ItemDetailState(curItem, title);
+}
+
+class _ItemDetailState extends State<ItemDetail> {
+  final Item curItem;
+  final String title;
+
+  _ItemDetailState(this.curItem, this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +82,11 @@ class ItemDetail extends StatelessWidget {
   Widget addToCart() {
     var _enable;
     if (!Cart.getInstance().getMap.containsKey(curItem)) {
-      _enable = () => Cart.getInstance().addItemToMap(curItem);
+      _enable = () {
+        setState(() {
+          Cart.getInstance().addItemToMap(curItem);
+        });
+      };
     }
     return Container(
       margin: EdgeInsets.only(top: 16),

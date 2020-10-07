@@ -57,9 +57,8 @@ class _CartPageState extends State<CartPage> {
                       ),
                     ),
                     Container(
-                      alignment: Alignment.topRight,
+                      margin: EdgeInsets.only(left: 10),
                       child: IconButton(
-                        alignment: Alignment.topRight,
                         icon: Icon(
                           Icons.close,
                           color: Colors.blueGrey,
