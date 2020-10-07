@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'models/item_model.dart';
-import 'storage/cart_storage.dart';
+import '../models/item_model.dart';
+import '../storage/cart_storage.dart';
 
-class FirstRoute extends StatelessWidget {
+class ItemCard extends StatelessWidget {
   final Item curItem;
-  const FirstRoute({Key key, this.curItem}) : super(key: key);
+  const ItemCard({Key key, this.curItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

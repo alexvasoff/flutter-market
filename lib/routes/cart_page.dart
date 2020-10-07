@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'models/item_model.dart';
-import 'storage/cart_storage.dart';
+import '../models/item_model.dart';
+import '../storage/cart_storage.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -114,24 +114,7 @@ class _CartPageState extends State<CartPage> {
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
-              return showDialog<void>(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text('Спасибо за покупку!'),
-                    content: Text('Ждем Вас снова!'),
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text('Спасибо!'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
+              print('Считаем, что купили');
             },
             child: Text("Купить"),
           ),

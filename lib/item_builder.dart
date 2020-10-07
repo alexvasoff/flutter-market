@@ -1,7 +1,7 @@
-import 'first_route.dart';
+import 'routes/item_card.dart';
 import 'models/item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/second_route.dart';
+import 'file:///D:/AndroidStudioProjects/flutter_learn/lib/routes/item_detail.dart';
 import 'package:flutter_learn/storage/item_storage.dart';
 
 class ItemBuilder extends StatelessWidget {
@@ -16,14 +16,14 @@ class ItemBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO: Обработать нажатия
     return GestureDetector(
-      child: FirstRoute(
+      child: ItemCard(
         curItem: ItemsStorage.getInstance().items[index],
       ),
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SecondRoute(
+            builder: (context) => ItemDetail(
               curItem: curItem(),
               title: curItem().name,
             ),
