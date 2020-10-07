@@ -18,4 +18,12 @@ class Cart {
     });
     return totalPrice;
   }
+
+  int totalCount() {
+    int totalCount = 0;
+    _itemsInCart.forEach((key, value) {
+      totalCount += value;
+    });
+    return totalCount;
+  }
 }
