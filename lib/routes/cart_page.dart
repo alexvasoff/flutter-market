@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../models/item_model.dart';
-import '../storage/cart_storage.dart';
+import 'package:flutter_learn/models/item_model.dart';
+import 'package:flutter_learn/storage/cart_storage.dart';
 
 class CartPage extends StatefulWidget {
   @override
@@ -19,52 +18,17 @@ class _CartPageState extends State<CartPage> {
         itemCount: Cart.getInstance().getAllItems.length,
         itemBuilder: (context, index) {
           Item curItem = Cart.getInstance().getAllItems[index];
-          return Padding(
+          return Container(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    imageSection(curItem),
+                    itemInCart(curItem),
                     Container(
-                      width: 80,
-                      height: 80,
-                      margin: EdgeInsets.symmetric(vertical: 5),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey[200],
-                            spreadRadius: 3,
-                            blurRadius: 2,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(
-                            image: Image.asset('${curItem.img}').image),
-                      ),
-                    ),
-                    Container(
-                      height: 90,
-                      margin: EdgeInsets.only(left: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            curItem.name,
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                          Text(
-                            (curItem.price * Cart.getInstance().getMap[curItem])
-                                .toString(),
-                            style: TextStyle(fontSize: 18),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 64),
+                      margin: EdgeInsets.only(top: 20),
                       child: Row(
                         children: [
                           IconButton(
@@ -75,7 +39,13 @@ class _CartPageState extends State<CartPage> {
                                     Cart.getInstance().getMap[curItem]--;
                                 });
                               }),
-                          Text(Cart.getInstance().getMap[curItem].toString()),
+                          SizedBox(
+                              width: 18,
+                              child: Text(
+                                Cart.getInstance().getMap[curItem].toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 16),
+                              )),
                           IconButton(
                               icon: Icon(Icons.add),
                               onPressed: () {
@@ -86,14 +56,20 @@ class _CartPageState extends State<CartPage> {
                         ],
                       ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.close),
-                      onPressed: () {
-                        setState(() {
-                          Cart.getInstance().getMap.remove(curItem);
-                        });
-                      },
-                    )
+                    Container(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        alignment: Alignment.topRight,
+                        icon: Icon(
+                          Icons.close,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            Cart.getInstance().getMap.remove(curItem);
+                          });
+                        },
+                      ),
+                    ),
                   ],
                 ),
                 Divider(
@@ -122,4 +98,51 @@ class _CartPageState extends State<CartPage> {
       ),
     );
   }
+}
+
+Widget imageSection(curItem) {
+  return Container(
+    width: 80,
+    height: 80,
+    margin: EdgeInsets.symmetric(vertical: 5),
+    decoration: BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey[200],
+          spreadRadius: 3,
+          blurRadius: 2,
+        )
+      ],
+      borderRadius: BorderRadius.circular(5),
+      image: DecorationImage(image: Image.asset('${curItem.img}').image),
+    ),
+  );
+}
+
+Widget itemInCart(curItem) {
+  return Expanded(
+    child: Container(
+      height: 90,
+      margin: EdgeInsets.only(left: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            curItem.name,
+            style: TextStyle(
+              fontSize: 18,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              (curItem.price * Cart.getInstance().getMap[curItem]).toString(),
+              style: TextStyle(fontSize: 18),
+            ),
+          )
+        ],
+      ),
+    ),
+  );
 }

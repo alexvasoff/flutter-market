@@ -1,4 +1,4 @@
-import '../models/item_model.dart';
+import 'package:flutter_learn/models/item_model.dart';
 
 class Cart {
   Cart._internal();

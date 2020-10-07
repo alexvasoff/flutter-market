@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///D:/AndroidStudioProjects/flutter_learn/lib/routes/cart_page.dart';
+import 'package:flutter_learn/routes/cart_page.dart';
 import 'package:flutter_learn/storage/item_storage.dart';
 import 'item_builder.dart';
 
