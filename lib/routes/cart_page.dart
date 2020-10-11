@@ -90,6 +90,10 @@ class _CartPageState extends State<CartPage> {
             color: Colors.blue,
             textColor: Colors.white,
             onPressed: () {
+              setState(() {
+                Cart.getInstance().getMap.clear();
+              });
+
               print('Считаем, что купили');
             },
             child: Text("Купить"),
