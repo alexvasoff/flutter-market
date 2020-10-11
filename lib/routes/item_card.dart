@@ -69,7 +69,7 @@ class ItemCard extends StatelessWidget {
                           ));
                           return;
                         }
-                        Cart.getInstance().addItemToMap(curItem);
+                        Cart.getInstance().addItem(curItem);
                         Scaffold.of(context).showSnackBar(SnackBar(
                           content: Text('Товар добавлен в корзину!'),
                           backgroundColor: Colors.blue,

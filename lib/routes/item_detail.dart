@@ -84,7 +84,7 @@ class _ItemDetailState extends State<ItemDetail> {
     if (!Cart.getInstance().getMap.containsKey(curItem)) {
       _enable = () {
         setState(() {
-          Cart.getInstance().addItemToMap(curItem);
+          Cart.getInstance().addItem(curItem);
         });
       };
     }

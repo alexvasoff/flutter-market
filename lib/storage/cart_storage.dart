@@ -13,7 +13,7 @@ class Cart {
 
   List<Item> get getAllItems => _itemsInCart.keys.toList();
 
-  void addItemToMap(Item item) => _itemsInCart.addAll({item: 1});
+  void addItem(Item item) => _itemsInCart.addAll({item: 1});
 
   int totalPrice() {
     int totalPrice = 0;
