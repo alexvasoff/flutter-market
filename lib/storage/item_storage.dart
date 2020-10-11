@@ -13,10 +13,8 @@ class ItemsStorage {
 
   List<Item> get items => _allItems;
 
-  static int _id = 0;
-
   static Item fromJsonMap(Map<String, dynamic> json) {
-    int id = _id++;
+    int id = json["id"];
     String name = json["name"];
     String description = json["description"];
     num price = json["price"];
