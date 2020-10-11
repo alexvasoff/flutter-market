@@ -35,7 +35,6 @@ class _ItemDetailState extends State<ItemDetail> {
               descriptionSection(),
               SizedBox(height: 12),
               homeButton(context),
-              //TODO: добавить кнопку "В корзину"
             ],
           ),
         ),

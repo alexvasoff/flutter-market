@@ -4,6 +4,7 @@ import 'package:flutter_learn/storage/cart_storage.dart';
 
 class ItemCard extends StatelessWidget {
   final Item curItem;
+
   const ItemCard({Key key, this.curItem}) : super(key: key);
 
   @override

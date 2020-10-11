@@ -10,17 +10,15 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Flutter Widgets Store"),
         actions: [
-          Padding(
+          IconButton(
             padding: const EdgeInsets.only(right: 15),
-            child: IconButton(
-              icon: Icon(Icons.shopping_basket),
-              tooltip: "Перейти в корзину",
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CartPage()));
-              },
-            ),
-          )
+            icon: Icon(Icons.shopping_basket),
+            tooltip: "Перейти в корзину",
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CartPage()));
+            },
+          ),
         ],
       ),
       body: FutureBuilder(
