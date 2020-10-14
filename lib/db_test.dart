@@ -26,8 +26,25 @@ class DB {
 
   addItemToFavorite(Item item) async {
     final db = await database;
-    print("Добавлен элемент ${item.id} в базу (я на это надеюсь...)");
+    print(
+        "Добавлен элемент ${item.id}  ${item.name} в базу (я на это надеюсь...)");
+    print(await getAllRows());
     return await db
         .rawInsert("INSERT INTO favorite(itemId) VALUES(?)", [item.id]);
+  }
+
+  removeItemFromFavorite(Item item) async {
+    final db = await database;
+    print("Ну а сейчас удаляем запись... ${item.id}  ${item.name}");
+    print(await getAllRows());
+    var res = db.rawDelete("DELETE FROM favorite WHERE itemId = ?", [item.id]);
+    return res;
+  }
+
+  getAllRows() async {
+    final db = await database;
+    return await db
+        .rawQuery('SELECT * FROM favorite')
+        .then((value) => value.length);
   }
 }

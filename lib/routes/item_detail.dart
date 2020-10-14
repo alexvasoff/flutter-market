@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/db_test.dart';
 import 'package:flutter_learn/models/item_model.dart';
 import 'package:flutter_learn/storage/cart_storage.dart';
 
@@ -72,7 +73,7 @@ class _ItemDetailState extends State<ItemDetail> {
               style: TextStyle(fontSize: 18),
             ),
           ),
-          FavoriteWidget(),
+          FavoriteWidget(curItem),
         ],
       ),
     );
@@ -155,13 +156,18 @@ class _ItemDetailState extends State<ItemDetail> {
 }
 
 class FavoriteWidget extends StatefulWidget {
+  final Item curItem;
+  FavoriteWidget(this.curItem);
+
   @override
-  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+  _FavoriteWidgetState createState() => _FavoriteWidgetState(curItem);
 }
 
 class _FavoriteWidgetState extends State<FavoriteWidget> {
-  bool _isFavorited = true;
-  int _favoriteCount = 41;
+  Item curItem;
+  _FavoriteWidgetState(this.curItem);
+  //TODO: определять isFavorite через базу. Искать среди всех записей айди curItem'а
+  bool _isFavorited = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -173,25 +179,17 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
           color: Colors.red,
           onPressed: _toggleFavorite,
         ),
-        SizedBox(
-          width: 18,
-          child: Container(
-            child: Text('$_favoriteCount'),
-          ),
-        )
       ],
     );
   }
 
   void _toggleFavorite() {
     setState(() {
-      if (_isFavorited) {
-        _favoriteCount -= 1;
-        _isFavorited = false;
-      } else {
-        _favoriteCount += 1;
-        _isFavorited = true;
-      }
+      if (_isFavorited)
+        DB.db.removeItemFromFavorite(curItem);
+      else
+        DB.db.addItemToFavorite(curItem);
+      _isFavorited = !_isFavorited;
     });
   }
 }
