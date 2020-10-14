@@ -26,7 +26,7 @@ class DB {
 
   addItemToFavorite(Item item) async {
     final db = await database;
-
+    print("Добавлен элемент ${item.id} в базу (я на это надеюсь...)");
     return await db
         .rawInsert("INSERT INTO favorite(itemId) VALUES(?)", [item.id]);
   }
