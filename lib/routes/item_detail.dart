@@ -166,7 +166,7 @@ class FavoriteWidget extends StatefulWidget {
 class _FavoriteWidgetState extends State<FavoriteWidget> {
   Item curItem;
   _FavoriteWidgetState(this.curItem);
-  //TODO: определять isFavorite через базу. Искать среди всех записей айди curItem'а
+
   bool _isFavorited = false;
   @override
   Widget build(BuildContext context) {
@@ -185,9 +185,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 
   void _toggleFavorite() {
     setState(() {
-      if (_isFavorited)
+      if (_isFavorited) {
         DB.db.removeItemFromFavorite(curItem);
-      else
+      } else
         DB.db.addItemToFavorite(curItem);
       _isFavorited = !_isFavorited;
     });

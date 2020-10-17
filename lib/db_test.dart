@@ -43,8 +43,6 @@ class DB {
 
   getAllRows() async {
     final db = await database;
-    return await db
-        .rawQuery('SELECT * FROM favorite')
-        .then((value) => value.length);
+    return await db.rawQuery('SELECT * FROM favorite');
   }
 }
