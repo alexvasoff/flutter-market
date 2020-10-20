@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/db_test.dart';
+import 'package:flutter_learn/database.dart';
 import 'package:flutter_learn/models/item_model.dart';
 import 'package:flutter_learn/storage/cart_storage.dart';
 
@@ -171,7 +171,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: DB.db.findItemInDB(curItem).then((value) => _isFavorited = value),
+      future: FavoriteDB.db
+          .findItemInDB(curItem)
+          .then((value) => _isFavorited = value),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Row(
@@ -196,16 +198,11 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   void _toggleFavorite() {
     setState(() {
       if (_isFavorited) {
-        print("Начинаем удалять");
-        DB.db.removeItemFromDB(curItem);
-        print("Удалили");
+        FavoriteDB.db.deleteItemFromDB(curItem);
       } else {
-        print("Заносим");
-        DB.db.addItemToDB(curItem);
-        print("Занесли");
+        FavoriteDB.db.addItemToDB(curItem);
       }
       _isFavorited = !_isFavorited;
-      print("Вышили из изменения");
     });
   }
 }
