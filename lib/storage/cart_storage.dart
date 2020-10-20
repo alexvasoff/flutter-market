@@ -16,12 +16,9 @@ class Cart {
   void addItem(Item item) => _itemsInCart.addAll({item: 1});
 
   bool isInCart(int itemId) {
-    var res = getAllItems.firstWhere((element) => element.id == itemId,
+    Item res = getAllItems.firstWhere((element) => element.id == itemId,
         orElse: () => null);
-    if (res != null)
-      return true;
-    else
-      return false;
+    return res == null ? false : true;
   }
 
   int totalPrice() {
