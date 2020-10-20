@@ -32,7 +32,7 @@ class _ItemDetailState extends State<ItemDetail> {
             children: [
               imageSection(),
               titleSection(),
-              addToCart(),
+              addToCartButton(),
               descriptionSection(),
               SizedBox(height: 12),
               homeButton(context),
@@ -79,9 +79,9 @@ class _ItemDetailState extends State<ItemDetail> {
     );
   }
 
-  Widget addToCart() {
+  Widget addToCartButton() {
     var _enable;
-    if (!Cart.getInstance().getMap.containsKey(curItem)) {
+    if (!Cart.getInstance().isInCart(curItem.id)) {
       _enable = () {
         setState(() {
           Cart.getInstance().addItem(curItem);
