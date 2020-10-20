@@ -167,29 +167,45 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   Item curItem;
   _FavoriteWidgetState(this.curItem);
 
-  bool _isFavorited = false;
+  bool _isFavorited;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-          icon: (_isFavorited
-              ? Icon(Icons.favorite)
-              : Icon(Icons.favorite_border)),
-          color: Colors.red,
-          onPressed: _toggleFavorite,
-        ),
-      ],
+    return FutureBuilder(
+      future: DB.db.findItemInDB(curItem).then((value) => _isFavorited = value),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Row(
+            children: [
+              IconButton(
+                icon: (_isFavorited
+                    ? Icon(Icons.favorite)
+                    : Icon(Icons.favorite_border)),
+                color: Colors.red,
+                onPressed: _toggleFavorite,
+              ),
+            ],
+          );
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 
   void _toggleFavorite() {
     setState(() {
       if (_isFavorited) {
-        DB.db.removeItemFromFavorite(curItem);
-      } else
-        DB.db.addItemToFavorite(curItem);
+        print("Начинаем удалять");
+        DB.db.removeItemFromDB(curItem);
+        print("Удалили");
+      } else {
+        print("Заносим");
+        DB.db.addItemToDB(curItem);
+        print("Занесли");
+      }
       _isFavorited = !_isFavorited;
+      print("Вышили из изменения");
     });
   }
 }

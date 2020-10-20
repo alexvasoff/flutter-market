@@ -5,10 +5,12 @@ import 'models/item_model.dart';
 
 class DB {
   DB._internal();
+
   static final DB db = DB._internal();
   static Database _database;
 
   Future<Database> get database async {
+    print("Проверяем базу");
     if (_database != null) return _database;
     _database = await initDB();
     return _database;
@@ -24,25 +26,33 @@ class DB {
     }, version: 1);
   }
 
-  addItemToFavorite(Item item) async {
+  addItemToDB(Item item) async {
+    print("Устанавливаем бд");
     final db = await database;
     print(
         "Добавлен элемент ${item.id}  ${item.name} в базу (я на это надеюсь...)");
-    print(await getAllRows());
     return await db
         .rawInsert("INSERT INTO favorite(itemId) VALUES(?)", [item.id]);
   }
 
-  removeItemFromFavorite(Item item) async {
+  removeItemFromDB(Item item) async {
+    print("Устанавливаем бд");
     final db = await database;
     print("Ну а сейчас удаляем запись... ${item.id}  ${item.name}");
-    print(await getAllRows());
-    var res = db.rawDelete("DELETE FROM favorite WHERE itemId = ?", [item.id]);
+    var res =
+        await db.rawDelete("DELETE FROM favorite WHERE itemId = ?", [item.id]);
+    print("V rezultate poluchaem res: $res");
     return res;
   }
 
-  getAllRows() async {
+  Future<bool> findItemInDB(Item item) async {
+    print("Устанавливаем бд");
     final db = await database;
-    return await db.rawQuery('SELECT * FROM favorite');
+    print("Ищим элемент ${item.name} в базе...");
+    var res =
+        await db.rawQuery("SELECT * FROM favorite WHERE itemId = ?", [item.id]);
+    print("Поиск завершен, в результате получаем строку: $res");
+    if (res.length > 0) return true;
+    return false;
   }
 }

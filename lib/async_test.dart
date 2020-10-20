@@ -1,5 +1,19 @@
-main() {
-  asyncs2();
+main() {}
+
+void runner() async {
+  var a = await myTest(false);
+  print(a);
+}
+
+Future<bool> myTest(bool vara) async {
+  print("123");
+  return await Future<bool>(() {
+    print("1234");
+    return !vara;
+  }).then((value) {
+    value;
+    print(value);
+  });
 }
 
 // -------------------------------------------------------------------------
@@ -57,8 +71,8 @@ methodD() {
 
 void asyncs2() async {
   methodA2();
+  methodB2();
   await methodC2('main');
-  await methodB2();
   methodD2();
 }
 
