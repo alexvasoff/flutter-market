@@ -62,7 +62,7 @@ class ItemCard extends StatelessWidget {
                         color: Colors.cyan,
                       ),
                       onPressed: () {
-                        if (Cart.getInstance().getAllItems.contains(curItem)) {
+                        if (Cart.getInstance().isInCart(curItem.id)) {
                           Scaffold.of(context).showSnackBar(SnackBar(
                             content: Text('Товар уже добавлен в корзину!'),
                             backgroundColor: Colors.blue,

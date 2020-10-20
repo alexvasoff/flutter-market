@@ -93,7 +93,6 @@ class _CartPageState extends State<CartPage> {
               setState(() {
                 Cart.getInstance().getMap.clear();
               });
-
               print('Считаем, что купили');
             },
             child: Text("Купить"),
