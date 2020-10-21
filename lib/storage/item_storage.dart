@@ -13,6 +13,14 @@ class ItemsStorage {
 
   List<Item> get items => _allItems;
 
+  static List<int> _addedItemsId = new List<int>();
+
+  void addItem(int id) {
+    if (_addedItemsId.contains(id))
+      return print("Элемент с ID $id уже существует!");
+    _addedItemsId.add(id);
+  }
+
   static Item fromJsonMap(Map<String, dynamic> json) {
     int id = json["id"];
     String name = json["name"];
@@ -20,8 +28,13 @@ class ItemsStorage {
     num price = json["price"];
     String img = json["img"];
 
-    Item i = new Item(id, name, description, img, price);
-    return i;
+    return Item(id, name, description, img, price);
+  }
+
+  static bool _alreadyExist(int itemId) {
+    Item res = _allItems.firstWhere((element) => element.id == itemId,
+        orElse: () => null);
+    return res == null ? false : true;
   }
 
   static void fromJsonArray(String jsonString) {
@@ -29,7 +42,7 @@ class ItemsStorage {
     List<dynamic> dynamicList = decodeMap["Items"];
     dynamicList.forEach((element) {
       Item i = ItemsStorage.fromJsonMap(element);
-      _allItems.add(i);
+      if (!_alreadyExist(i.id)) _allItems.add(i);
     });
   }
 }
