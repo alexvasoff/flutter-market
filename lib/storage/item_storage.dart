@@ -13,14 +13,6 @@ class ItemsStorage {
 
   List<Item> get items => _allItems;
 
-  static List<int> _addedItemsId = new List<int>();
-
-  void addItem(int id) {
-    if (_addedItemsId.contains(id))
-      return print("Элемент с ID $id уже существует!");
-    _addedItemsId.add(id);
-  }
-
   static Item fromJsonMap(Map<String, dynamic> json) {
     int id = json["id"];
     String name = json["name"];
