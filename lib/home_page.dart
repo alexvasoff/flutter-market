@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/models/item_model.dart';
 import 'package:flutter_learn/routes/cart_page.dart';
 import 'package:flutter_learn/storage/item_storage.dart';
 import 'item_builder.dart';
@@ -6,6 +7,7 @@ import 'item_builder.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<Item> items = ItemsStorage.getInstance().items;
     return Scaffold(
       appBar: AppBar(
         title: Text("Flutter Widgets Store"),
@@ -29,9 +31,9 @@ class HomePage extends StatelessWidget {
             ItemsStorage.fromJsonArray(snapshot.data);
             return ListView.builder(
                 padding: EdgeInsets.all(10.0),
-                itemCount: ItemsStorage.getInstance().items.length,
+                itemCount: items.length,
                 itemBuilder: (context, index) {
-                  return ItemBuilder(index);
+                  return ItemBuilder(items[index].id);
                 });
           }
           return Center(child: CircularProgressIndicator());

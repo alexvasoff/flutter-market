@@ -5,12 +5,13 @@ import 'package:flutter_learn/storage/item_storage.dart';
 import 'models/item_model.dart';
 
 class ItemBuilder extends StatelessWidget {
-  final int index;
+  final int itemId;
 
-  ItemBuilder(this.index);
+  ItemBuilder(this.itemId);
 
   //вернуть элемент Item по индексу
-  Item curItem() => ItemsStorage.getInstance().items[index];
+
+  Item curItem() => ItemsStorage.findById(itemId);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class ItemBuilder extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       child: Container(
         child: ItemCard(
-          curItem: ItemsStorage.getInstance().items[index],
+          curItem: curItem(),
         ),
       ),
       onTap: () {

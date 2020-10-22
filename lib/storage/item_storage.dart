@@ -9,9 +9,15 @@ class ItemsStorage {
 
   static ItemsStorage _itemsStorage = ItemsStorage._internal();
 
+  List<Item> get items => _allItems;
+
   static ItemsStorage getInstance() => _itemsStorage;
 
-  List<Item> get items => _allItems;
+  static Item findById(int itemId) {
+    Item res = _allItems.firstWhere((element) => element.id == itemId,
+        orElse: () => null);
+    return res;
+  }
 
   static Item fromJsonMap(Map<String, dynamic> json) {
     int id = json["id"];
@@ -23,18 +29,13 @@ class ItemsStorage {
     return Item(id, name, description, img, price);
   }
 
-  static bool _alreadyExist(int itemId) {
-    Item res = _allItems.firstWhere((element) => element.id == itemId,
-        orElse: () => null);
-    return res == null ? false : true;
-  }
-
   static void fromJsonArray(String jsonString) {
     Map<String, dynamic> decodeMap = jsonDecode(jsonString);
     List<dynamic> dynamicList = decodeMap["Items"];
     dynamicList.forEach((element) {
       Item i = ItemsStorage.fromJsonMap(element);
-      if (!_alreadyExist(i.id)) _allItems.add(i);
+      if (findById(i.id) != null) return;
+      _allItems.add(i);
     });
   }
 }
