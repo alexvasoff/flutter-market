@@ -25,19 +25,19 @@ class FavoriteDB {
     }, version: 1);
   }
 
-  addItemToDB(Item item) async {
+  addItem(Item item) async {
     final db = await database;
     return await db
         .rawInsert("INSERT INTO favorite(itemId) VALUES(?)", [item.id]);
   }
 
-  deleteItemFromDB(Item item) async {
+  deleteItem(Item item) async {
     final db = await database;
     return await db
         .rawDelete("DELETE FROM favorite WHERE itemId = ?", [item.id]);
   }
 
-  Future<bool> findItemInDB(Item item) async {
+  Future<bool> findItem(Item item) async {
     final db = await database;
     var res =
         await db.rawQuery("SELECT * FROM favorite WHERE itemId = ?", [item.id]);

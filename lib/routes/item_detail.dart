@@ -171,9 +171,8 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: FavoriteDB.db
-          .findItemInDB(curItem)
-          .then((value) => _isFavorited = value),
+      future:
+          FavoriteDB.db.findItem(curItem).then((value) => _isFavorited = value),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Row(
@@ -198,9 +197,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   void _toggleFavorite() {
     setState(() {
       if (_isFavorited) {
-        FavoriteDB.db.deleteItemFromDB(curItem);
+        FavoriteDB.db.deleteItem(curItem);
       } else {
-        FavoriteDB.db.addItemToDB(curItem);
+        FavoriteDB.db.addItem(curItem);
       }
       _isFavorited = !_isFavorited;
     });
