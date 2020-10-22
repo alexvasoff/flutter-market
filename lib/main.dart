@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Title of application!",
       home: HomePage(),
-
     );
   }
 }
