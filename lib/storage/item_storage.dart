@@ -13,7 +13,7 @@ class ItemsStorage {
 
   static ItemsStorage getInstance() => _itemsStorage;
 
-  static Item findById(int itemId) {
+  Item findById(int itemId) {
     Item res = _allItems.firstWhere((element) => element.id == itemId,
         orElse: () => null);
     return res;
@@ -34,7 +34,7 @@ class ItemsStorage {
     List<dynamic> dynamicList = decodeMap["Items"];
     dynamicList.forEach((element) {
       Item i = ItemsStorage.fromJsonMap(element);
-      if (findById(i.id) != null) return;
+      if (ItemsStorage.getInstance().findById(i.id) != null) return;
       _allItems.add(i);
     });
   }

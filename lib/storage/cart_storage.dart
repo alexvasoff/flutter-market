@@ -3,9 +3,9 @@ import 'package:flutter_learn/models/item_model.dart';
 class Cart {
   Cart._internal();
 
-  static Cart _itemsStorage = Cart._internal();
+  static Cart _cart = Cart._internal();
 
-  static Cart getInstance() => _itemsStorage;
+  static Cart getInstance() => _cart;
 
   static Map<Item, int> _itemsInCart = new Map<Item, int>();
 
@@ -35,5 +35,12 @@ class Cart {
       totalCount += value;
     });
     return totalCount;
+  }
+
+  Item findById(int itemId) {
+    Item res = Cart.getInstance()
+        .getAllItems
+        .firstWhere((element) => element.id == itemId, orElse: () => null);
+    return res;
   }
 }

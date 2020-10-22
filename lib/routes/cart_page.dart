@@ -10,14 +10,15 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
+    List<Item> itemsInCart = Cart.getInstance().getAllItems;
     return Scaffold(
       appBar: AppBar(
         title: Text('Корзина'),
       ),
       body: ListView.builder(
-        itemCount: Cart.getInstance().getAllItems.length,
+        itemCount: itemsInCart.length,
         itemBuilder: (context, index) {
-          Item curItem = Cart.getInstance().getAllItems[index];
+          Item curItem = Cart.getInstance().findById(itemsInCart[index].id);
           return Container(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -77,7 +78,6 @@ class _CartPageState extends State<CartPage> {
                 )
               ],
             ),
-            // ignore: missing_return
           );
         },
       ),

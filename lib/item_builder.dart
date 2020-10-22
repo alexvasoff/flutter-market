@@ -11,7 +11,7 @@ class ItemBuilder extends StatelessWidget {
 
   //вернуть элемент Item по индексу
 
-  Item curItem() => ItemsStorage.findById(itemId);
+  Item curItem() => ItemsStorage.getInstance().findById(itemId);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +27,7 @@ class ItemBuilder extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ItemDetail(
+              // передает "верифицированный" элемент
               curItem: curItem(),
               title: curItem().name,
             ),
